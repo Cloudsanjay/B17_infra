@@ -3,14 +3,18 @@ trigger: none
 pool: B17_AgentPool
 
 stages:
-  - stage: 
+  - stage: TerrafromPlan
+    displayName: Terraform init validate plan
     jobs:
-      - job: 
+      - job: TerraformIVP
+        displayName: Terraform IVP
         steps:
           - task: TerraformInstaller@1
+            displayName: Terraform install
             inputs:
               terraformVersion: 'latest'
           - task: TerraformTask@5
+            displayName: Terraform Init
             inputs:
               provider: 'azurerm'
               command: 'init'
@@ -19,16 +23,26 @@ stages:
               backendAzureRmContainerName: 'xyz'
               backendAzureRmKey: 'terraform.tfstate'
           - task: TerraformTask@5
+            displayName: Terraform validate
             inputs:
               provider: 'azurerm'
               command: 'validate'
           - task: TerraformTask@5
+            displayName: Terraform Plan
             inputs:
               provider: 'azurerm'
               command: 'plan'
               environmentServiceNameAzureRM: 'xyz'
+  - stage: TerrafromApply
+    displayName: Terraform Apply
+    jobs:
+      - job: TerraformA
+        displayName: Terraform A
+        steps:
           - task: TerraformTask@5
+            displayName: Terraform apply
             inputs:
               provider: 'azurerm'
               command: 'apply'
               environmentServiceNameAzureRM: 'xyz'
+
