@@ -18,7 +18,7 @@ resource "azurerm_resource_group" "rg" {
 }
 
 resource "azurerm_storage_account" "stg" {
-  name                     = "pipelinestorage98125673491"
+  name                     = "pipelinestorage98"
   location                 = azurerm_resource_group.rg.location
   resource_group_name      = azurerm_resource_group.rg.name
   account_tier             = "Standard"
