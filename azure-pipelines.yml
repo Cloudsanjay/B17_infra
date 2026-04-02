@@ -40,6 +40,14 @@ stages:
         displayName: Terraform A
         steps:
           - task: TerraformTask@5
+            inputs:
+              provider: 'azurerm'
+              command: 'init'
+              backendServiceArm: 'xyz'
+              backendAzureRmStorageAccountName: 'sanjaystg1'
+              backendAzureRmContainerName: 'xyz'
+              backendAzureRmKey: 'terraform.tfstate'
+          - task: TerraformTask@5
             displayName: Terraform apply
             inputs:
               provider: 'azurerm'
