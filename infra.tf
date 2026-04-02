@@ -17,13 +17,8 @@ resource "azurerm_resource_group" "rg" {
   location = "eastus"
 }
 
-resource "azurerm_resource_group" "rgg" {
-  name     = "manoj1_rg"
-  location = "eastus"
-}
-
 resource "azurerm_storage_account" "stg" {
-  name                     = "pipelinestorage"
+  name                     = "pipelinestorage98125673491"
   location                 = azurerm_resource_group.rg.location
   resource_group_name      = azurerm_resource_group.rg.name
   account_tier             = "Standard"
