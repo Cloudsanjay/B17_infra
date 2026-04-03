@@ -1,4 +1,7 @@
-trigger: none
+trigger:
+ branches:
+  include:
+    - main
 
 pool: B17_AgentPool
 
@@ -7,6 +10,7 @@ stages:
     displayName: Terraform init validate plan
     jobs:
       - job: TerraformIVP
+        pool: B17_AgentPool
         displayName: Terraform IVP
         steps:
           - task: TerraformInstaller@1
@@ -33,10 +37,20 @@ stages:
               provider: 'azurerm'
               command: 'plan'
               environmentServiceNameAzureRM: 'xyz'
+      - job: manualValidation
+        pool: server
+        displayName: Valdation
+        dependsOn: TerraformIVP
+        steps:
+           - task: ManualValidation@1
+             inputs:
+               notifyUsers: 'cloud.sanjaysingh@gmail.com'
+               approvers: 'Sanjay'
   - stage: TerrafromApply
     displayName: Terraform Apply
     jobs:
       - job: TerraformA
+        pool: B17_AgentPool
         displayName: Terraform A
         steps:
           - task: TerraformInstaller@1
