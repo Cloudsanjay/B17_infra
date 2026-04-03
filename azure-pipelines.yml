@@ -45,7 +45,7 @@ stages:
            - task: ManualValidation@1
              inputs:
                notifyUsers: 'cloud.sanjaysingh@gmail.com'
-               approvers: 'Sanjay'
+               approvers: 'cloud.sanjaysingh@gmail.com'
   - stage: TerrafromApply
     displayName: Terraform Apply
     jobs:
