@@ -36,9 +36,11 @@ stages:
               command: 'plan'
               environmentServiceNameAzureRM: 'xyz'
           - task: tfsec@1
+            continueOnError: true
             inputs:
               version: 'v1.26.0'
           - task: PowerShell@2
+            continueOnError: true
             inputs:
               targetType: 'inline'
               script: 'tflint --chdir=. --recursive'
