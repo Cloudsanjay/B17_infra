@@ -1,6 +1,6 @@
 trigger:
  - main
-
+ 
 pool: B17_AgentPool
 
 stages:
@@ -60,7 +60,7 @@ stages:
                 tar -xvf infracost.tar.gz
                 .\infracost.exe --version
                 .\infracost.exe auth login
-                .\infracost.exe breakdown --path '$(System.DefaultWorkingDirectory)/enviroment/dev' --format table
+                .\infracost.exe breakdown --path '$(System.DefaultWorkingDirectory)' --format table
               
       - job: manualValidation
         pool: server
