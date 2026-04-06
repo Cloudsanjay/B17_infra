@@ -1,5 +1,5 @@
-trigger: none
-
+trigger:
+ - main
    
 pool: B17_AgentPool
 
