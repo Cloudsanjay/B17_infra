@@ -42,6 +42,15 @@ stages:
             inputs:
               targetType: 'inline'
               script: 'tflint --chdir=. --recursive'
+          - task: InfracostSetup@2
+            inputs:
+              apiKey: 'ics_v1_B3xLBjiMffUU9aAy4v7nKs_p4OogRAhhyy4yKcP4j8hI1Q4RpMwg2W0mCk8tU0tUXP0Dn2wD'
+              version: '0.10.x'
+          - task: PowerShell@2
+            inputs:
+              targetType: 'inline'
+              script: 'infracost breakdown --path=tfplan --format=table'
+              
       - job: manualValidation
         pool: server
         displayName: Valdation
