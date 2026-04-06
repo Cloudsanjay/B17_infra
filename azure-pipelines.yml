@@ -35,6 +35,8 @@ stages:
               provider: 'azurerm'
               command: 'plan'
               environmentServiceNameAzureRM: 'xyz'
+          
+          
           - task: tfsec@1
             continueOnError: true
             inputs:
@@ -51,7 +53,7 @@ stages:
           - task: PowerShell@2
             inputs:
               targetType: 'inline'
-              script: 'infracost breakdown --path=tfplan --format=table'
+              script: 'infracost breakdown --path=. --format=table'
               
       - job: manualValidation
         pool: server
