@@ -35,7 +35,13 @@ stages:
               provider: 'azurerm'
               command: 'plan'
               environmentServiceNameAzureRM: 'xyz'
-          
+          - task: PowerShell@2
+            inputs:
+              targetType: 'inline'
+              script: |
+                terraform plan -input=false -out=tfplan
+                mkdir -p $(Build.ArtifactStagingDirectory)
+                mv tfplan $(Build.ArtifactStagingDirectory)/tfplan
           
           - task: tfsec@1
             continueOnError: true
@@ -54,6 +60,7 @@ stages:
             inputs:
               targetType: 'inline'
               script: 'infracost breakdown --path=. --format=table'
+
               
       - job: manualValidation
         pool: server
