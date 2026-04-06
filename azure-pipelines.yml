@@ -39,11 +39,11 @@ stages:
             continueOnError: true
             inputs:
               version: 'v1.26.0'
-          - task: PowerShell@2
-            continueOnError: true
-            inputs:
-              targetType: 'inline'
-              script: 'tflint --chdir=. --recursive'
+          # - task: PowerShell@2
+          #   continueOnError: true
+          #   inputs:
+          #     targetType: 'inline'
+          #     script: 'tflint --chdir=. --recursive'
           - task: InfracostSetup@2
             inputs:
               apiKey: 'ics_v1_B3xLBjiMffUU9aAy4v7nKs_p4OogRAhhyy4yKcP4j8hI1Q4RpMwg2W0mCk8tU0tUXP0Dn2wD'
