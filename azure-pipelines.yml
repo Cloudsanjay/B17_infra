@@ -1,6 +1,6 @@
 trigger:
  - main
- 
+  
 pool: B17_AgentPool
 
 stages:
